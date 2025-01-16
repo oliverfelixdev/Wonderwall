@@ -7,6 +7,9 @@
     <title>Wonderwall Mural — Wallpapers</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./src/utils/utils.css">
+    <link rel="stylesheet" href="./src/utils/swiper.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
@@ -18,16 +21,16 @@
                         <a href="index.html">
                             <img class="logo" src="./src/assets/images/wonderwall.svg" alt="logo">
                         </a>
-                        <div class="search">
+                        <div class="search hover_underline">
                             <img src="./src/assets/images/search.svg" alt="Search Icons">
                             <span class="link-sm">Search</span>
                         </div>
                     </div>
                     <div class="nav-child-2">
                         <div class="link-container">
-                            <a href="#" class="link-sm">Catalog</a>
-                            <a href="#" class="link-sm">Login</a>
-                            <a href="#" class="link-sm">Cart(0)</a>
+                            <a href="#" class="link-sm hover_underline">Catalog</a>
+                            <a href="#" class="link-sm hover_underline">Login</a>
+                            <a href="#" class="link-sm hover_underline">Cart(0)</a>
                         </div>
                         <div class="menu-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -39,7 +42,73 @@
                 </div>
             </nav>
         </header>
+        <section id="section1">
+            <div class="sect1-container">
+                <div class="content">
+                    <div class="slide-data">
+                        <div class="top-element">
+                            <div class="heading">
+                                <h1 class="title-main">
+                                    <span>WALLPAPERS</span>
+                                </h1>
+                                <div class="flex items-start justify-start">
+                                    <h1 class="title-main">
+                                        <span>THAT</span>
+                                    </h1>
+                                    <h1 class="title-main pl-3">
+                                        <span>INSPIRE</span>
+                                    </h1>
+                                </div>
+                            </div>
+                            <button class="button">
+                                <div class="flex items-center justify-center gap-8">
+                                    <span>Go to Catalog</span>
+                                    <span class="text-2xl font-semibold rotate-45">⁘</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="bottom-element">
+                            <a href="#" class="link-sm hover_underline">Facebook</a>
+                            <a href="#" class="link-sm hover_underline">Instagram</a>
+                        </div>
+                    </div>
+                    <div class="slide-navigate-items">
+                        <div class="navigation flex items-center justify-center gap-3">
+                            <span class="icon el-prev border border-[#ffffff20] p-5 rounded-full cursor-pointer">
+                                <img class="opacity-80" src="./src/assets/images/elprev.svg" alt="prev Icon">
+                            </span>
+                            <span class="icon el-next border border-[#ffffff20] p-5 rounded-full cursor-pointer">
+                                <img class="opacity-80" src="./src/assets/images/elnext.svg" alt="Next Icon">
+                            </span>
+                        </div>
+                        <div class="pagination flex items-end justify-end pr-8 pb-8">
+                            <h2 class="text-6xl">
+                                <span class="font-[SD-RI]">1 − </span><span class="font-[PL]"> 5</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="./src/assets/images/hero-image01-scaled.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./src/assets/images/hero-image02-scaled.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./src/assets/images/hero-image03-scaled.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./src/assets/images/hero-image04-scaled.jpg" />
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
