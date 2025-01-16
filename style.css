@@ -1,0 +1,118 @@
+:root {
+  --color-light: #ffffff;
+  --color-dark: #202020;
+  --color-cadet: #82969c;
+  --color-cream: #afa8a1;
+  --color-textbox: #f4f4f4;
+  --color-contrast: #918f8e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "PR";
+}
+
+html,
+body {
+  min-height: 100%;
+  width: 100%;
+  background-color: var(--color-light);
+}
+
+@font-face {
+  font-family: "PR";
+  src: url("./src/assets/fonts/plainregular.woff2");
+}
+
+@font-face {
+  font-family: "PL";
+  src: url("./src/assets/fonts/plainlight.woff2");
+}
+
+@font-face {
+  font-family: "SD";
+  src: url("./src/assets/fonts/saolsisplayregularItalic.woff2");
+}
+
+main {
+  position: relative;
+  width: 100%;
+}
+
+nav {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  background-color: red;
+  color: var(--color-light);
+}
+
+.nav-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5vw 2vw;
+}
+
+.nav-child-1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 22rem;
+}
+
+.nav-child-1 .logo {
+  display: block;
+}
+
+.nav-child-1 .search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.nav-child-1 .search img {
+  height: 0.9rem;
+  margin-top: 3px;
+}
+
+.nav-child-1 .search {
+  font-size: 0.9rem;
+}
+
+.nav-child-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 21rem;
+}
+
+.nav-child-2 .link-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.nav-child-2 .link-container a {
+  color: var(--color-light);
+}
+
+.menu-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+}
+
+.menu-icon svg {
+  height: 100%;
+  width: 100%;
+}
