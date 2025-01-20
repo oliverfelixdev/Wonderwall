@@ -1,8 +1,26 @@
+/* HEADING SPLITED SPAN'S CLASS */
+.title-main {
+  overflow: hidden;
+  font-size: 5.5rem;
+  line-height: 1;
+}
+
+.title-main span {
+  display: inline-block;
+  transition: opacity 0.5s ease;
+  font-family: "PL";
+}
+
+.title-main-custom span {
+  font-family: "SD-RI";
+}
+/* LINKS LINK SMALL */
 .link-sm {
   font-size: 0.9rem;
   text-decoration: none;
   width: fit-content;
   cursor: pointer;
+  font-family: "PL";
 }
 
 /* UNDERLINE ANIMATION ON LINKS */
@@ -31,7 +49,7 @@
 }
 
 /* BUTTON ANIMATION */
-.button {
+.button-main {
   display: inline-block;
   padding: 24px 24px;
   transition: all 0.2s ease-in;
@@ -44,7 +62,7 @@
   z-index: 1;
 }
 
-.button:before {
+.button-main:before {
   content: "";
   position: absolute;
   left: 50%;
@@ -55,11 +73,11 @@
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 50%;
   display: block;
-  transition: all 0.4s 0.1s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: all 0.6s cubic-bezier(0.83, 0, 0.17, 1);
   z-index: -1;
 }
 
-.button:after {
+.button-main:after {
   content: "";
   position: absolute;
   left: 55%;
@@ -70,22 +88,59 @@
   background-color: var(--color-cadet);
   border-radius: 50%;
   display: block;
-  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: all 0.6s cubic-bezier(0.83, 0, 0.17, 1);
   z-index: -1;
 }
 
-.button:hover {
+.button-main:hover {
   color: #ffffff;
 }
 
-.button:hover:before {
+.button-main:hover:before {
   top: -35%;
   background-color: var(--color-cadet);
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
-.button:hover:after {
+.button-main:hover:after {
   top: -45%;
   background-color: var(--color-cadet);
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+/* NAVIGATE ICONS HOVER ANIMATION */
+.navigate-icons {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.83, 0, 0.17, 1);
+
+  &:hover img {
+    filter: invert(1);
+  }
+}
+
+.navigate-icons img {
+  transition: all 0.6s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.navigate-icons::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: var(--color-light);
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  z-index: -1;
+  transition: all 0.6s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.navigate-icons:hover {
+  color: #fff;
+}
+
+.navigate-icons:hover::after {
+  bottom: 0;
+  border-radius: 0;
 }
