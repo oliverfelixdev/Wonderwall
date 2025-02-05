@@ -4,8 +4,14 @@
   --color-cadet: #82969c;
   --color-cream: #afa8a1;
   --color-textbox: #f4f4f4;
-  --color-tip: #918f8e;
+  --color-tip: #918f8e89;
   --color-contrast: #ffffff41;
+
+  /* font sizes */
+  --title-xl: 5.5rem;
+  --title-lg: 2.6rem;
+  --subtitle: 0.9rem;
+  --subtitle-sm: 0.1rem;
 }
 
 * {
@@ -40,6 +46,7 @@ body {
 main {
   position: relative;
   width: 100%;
+  overflow-x: hidden;
 }
 
 nav {
@@ -83,7 +90,7 @@ nav {
 }
 
 .nav-child-1 .search {
-  font-size: 0.9rem;
+  font-size: var(--subtitle);
 }
 
 .nav-child-2 {
@@ -135,8 +142,8 @@ nav {
 }
 
 .sect1-container .content {
-  width: 80.5%;
-  height: 60%;
+  width: 76.5%;
+  height: 62%;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -150,7 +157,7 @@ nav {
   align-items: start;
   justify-content: space-between;
   flex-direction: column;
-  padding: 0 0 3rem 0;
+  padding: 0 0 2rem 0;
 }
 
 .sect1-container .content .slide-data .top-element {
@@ -158,7 +165,7 @@ nav {
   align-items: start;
   justify-content: start;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .sect1-container .content .slide-data .bottom-element {
@@ -173,3 +180,76 @@ nav {
   grid-template-rows: 1fr 1fr;
 }
 
+#section2 {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+.sect2-container {
+  height: 100%;
+  width: 100%;
+}
+
+.s2_content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.s2_content .products {
+  position: relative;
+  margin: auto;
+  padding-top: 3rem;
+  width: 93%;
+  max-width: 1000px;
+}
+
+.prdcts_element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--color-light);
+  padding: 2rem 0 1.5rem 0;
+  cursor: grabbing;
+  border-bottom: 0.5px solid var(--color-tip);
+  margin-top: 2px;
+  position: relative;
+  /* transition: all 0.6s cubic-bezier(0.85, 0, 0.15, 1); */
+}
+
+.prdcts_element:hover span {
+  color: var(--color-dark);
+}
+
+.prdcts_element span {
+  font-weight: 100;
+  font-size: var(--subtitle);
+  color: var(--color-tip);
+  transition: all 0.2s ease-out;
+}
+
+/* in prdcts-element data attaribute */
+.hover-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 16rem;
+  width: 12rem;
+  height: auto;
+  z-index: 9;
+  aspect-ratio: 0.9;
+  transform-origin: center;
+  background: gray;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.prdcts_element h2 {
+  font-size: var(--title-lg);
+  font-family: "PL";
+  line-height: 1;
+}

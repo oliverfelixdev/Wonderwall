@@ -33,9 +33,9 @@
                             <a href="#" class="link-sm hover_underline">Login</a>
                             <a href="#" class="link-sm hover_underline">Cart(0)</a>
                         </div>
-                        <div class="menu-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="#fff" class="size-6">
+                        <div class="menu-icon svgInsideBtn">
+                            <svg class="svgIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="#fff" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
                             </svg>
                         </div>
@@ -69,10 +69,12 @@
                     </div>
                     <div class="slide-navigate-items">
                         <div class="navigation flex items-start md:items-center justify-start md:justify-center gap-3">
-                            <span class="icon navigate-icons el-prev border border-[#ffffff20] p-4 rounded-full cursor-pointer">
+                            <span
+                                class="icon navigate-icons el-prev border border-[#ffffff20] p-4 rounded-full cursor-pointer">
                                 <img class="opacity-80" src="./src/assets/images/elprev.svg" alt="prev Icon">
                             </span>
-                            <span class="icon navigate-icons el-next border border-[#ffffff20] p-4 rounded-full cursor-pointer">
+                            <span
+                                class="icon navigate-icons el-next border border-[#ffffff20] p-4 rounded-full cursor-pointer">
                                 <img class="opacity-80" src="./src/assets/images/elnext.svg" alt="Next Icon">
                             </span>
                         </div>
@@ -85,7 +87,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <canvas></canvas> -->
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -106,7 +107,91 @@
                 </div>
             </div>
         </section>
-        <section id="section2"></section>
+        <section id="section2">
+            <div class="sect2-container">
+                <div class="s2_content">
+                    <div class="products">
+                        <div class="prdcts-wrap">
+                            <div class="prdcts_element prdcts_element1"
+                                data-hover-img="./src/assets/images/prdctelemimage1.jpg">
+                                <div class="flex items-center justify-start gap-6">
+                                    <span>01</span>
+                                    <h2>Wallpapers</h2>
+                                </div>
+                                <span>(200+)</span>
+                            </div>
+                            <div class="prdcts_element prdcts_element2"
+                                data-hover-img="./src/assets/images/prdctelemimage2.jpg">
+                                <div class="flex items-center justify-start gap-6">
+                                    <span>02</span>
+                                    <h2>Wonderwall Match</h2>
+                                </div>
+                                <span>(16)</span>
+                            </div>
+                            <div class="prdcts_element prdcts_element3"
+                                data-hover-img="./src/assets/images/prdctelemimage3.jpg">
+                                <div class="flex items-center justify-start gap-6">
+                                    <span>03</span>
+                                    <h2>WonderRoll</h2>
+                                </div>
+                                <span>(16)</span>
+                            </div>
+                            <div class="prdcts_element prdcts_element4"
+                                data-hover-img="./src/assets/images/prdctelemimage4.jpg">
+                                <div class="flex items-center justify-start gap-6">
+                                    <span>04</span>
+                                    <h2>Paints</h2>
+                                </div>
+                                <span>(500+)</span>
+                            </div>
+                            <div class="prdcts_element prdcts_element5"
+                                data-hover-img="./src/assets/images/prdctelemimage5.jpg">
+                                <div class="flex items-center justify-start gap-6">
+                                    <span>05</span>
+                                    <h2>Glue / Resin</h2>
+                                </div>
+                                <span>(3)</span>
+                            </div>
+                            <div class="prdcts_element prdcts_element6"
+                                data-hover-img="./src/assets/images/prdctelemimage6.jpg">
+                                <div class="flex items-center justify-start gap-6">
+                                    <span>06</span>
+                                    <h2>Outlet</h2>
+                                </div>
+                                <span>(53)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="information overflow-hidden">
+                        <div class="h-full max-w-lg mx-auto p-6 mt-[3rem]">
+                            <img src="./src/assets/images/infoconimage.jpg" alt="WonderWall Studio" class="w-[40%]">
+                            <h2 class="mt-6 text-3xl leading-tight font-[PL]">
+                                Welcome to the amazing world of WonderWall Studio wallpapers!
+                            </h2>
+                            <p class="mt-4 text-gray-600 text-sm w-[95%]">
+                                WonderWall Studio wallpapers are characterized by an amazing harmony of the artist’s
+                                vision, love of art, and modern technology. All these things combined create a lasting,
+                                tangible value. Our designs not only perfectly complement any interior, but also create
+                                images on the wall with an extraordinary power of emotional expression.
+                            </p>
+                            <button
+                                class="svgInsideBtn mt-12 flex items-center gap-2 bg-[#F4F4F4] text-black py-6 px-8 text-sm font-medium">
+                                <span class="text-lg">
+                                    <svg class="svgIcon" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                                        <path d="M7 11l5 5l5 -5" />
+                                        <path d="M12 4l0 12" />
+                                    </svg>
+                                </span> Download catalogue 2024
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

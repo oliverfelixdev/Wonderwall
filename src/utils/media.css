@@ -43,7 +43,7 @@
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 425px) {
   .nav-wrapper {
     padding: 5vw 3vw;
   }
@@ -64,21 +64,25 @@
 
   #section1 {
     overflow: hidden;
+    height: 100vh;
   }
 
   .sect1-container .content {
     width: 100%;
-    min-height: 65%;
+    height: fit-content;
     display: flex;
-    align-items: start;
+    align-items: flex-end;
+    justify-content: flex-end;
     flex-direction: column;
+    background-color: rebeccapurple;
+    padding: 2vw;
   }
 
   .sect1-container .content .slide-data {
     width: 100%;
-    padding: 0 0 2rem 0;
+    background-color: red;
   }
-
+  
   .sect1-container .content .slide-data .top-element {
     gap: 1.5rem;
   }
@@ -101,7 +105,11 @@
 
   .slide-navigate-items {
     width: 100%;
+    height: 4.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: start;
+    place-content: start space-evenly;
+    background-color: chartreuse;
   }
 }
