@@ -55,11 +55,9 @@
                                     <h1 class="title-main title-main-custom md:pl-3">INSPIRE</h1>
                                 </div>
                             </div>
-                            <button class="button-main">
-                                <div class="flex items-center justify-center gap-8">
-                                    <span>Go to Catalog</span>
-                                    <span class="text-2xl font-semibold rotate-45">⁘</span>
-                                </div>
+                            <button class="button-main svgInsideBtn h-20 w-52 flex items-center justify-evenly">
+                                <span>Go to Catalog</span>
+                                <span>⨀</span>
                             </button>
                         </div>
                         <div class="bottom-element">
@@ -70,12 +68,22 @@
                     <div class="slide-navigate-items">
                         <div class="navigation flex items-start md:items-center justify-start md:justify-center gap-3">
                             <span
-                                class="icon navigate-icons el-prev border border-[#ffffff20] p-4 rounded-full cursor-pointer">
-                                <img class="opacity-80" src="./src/assets/images/elprev.svg" alt="prev Icon">
+                                class="svgInsideBtn icon navigate-icons el-prev border border-[#ffffff20] p-4 rounded-full cursor-pointer">
+                                <svg class="svgIcon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M1.02698 11.9929L5.26242 16.2426L6.67902 14.8308L4.85766 13.0033L22.9731 13.0012L22.9728 11.0012L4.85309 11.0033L6.6886 9.17398L5.27677 7.75739L1.02698 11.9929Z"
+                                        fill="currentColor" />
+                                </svg>
                             </span>
                             <span
-                                class="icon navigate-icons el-next border border-[#ffffff20] p-4 rounded-full cursor-pointer">
-                                <img class="opacity-80" src="./src/assets/images/elnext.svg" alt="Next Icon">
+                                class="svgInsideBtn icon navigate-icons el-next border border-[#ffffff20] p-4 rounded-full cursor-pointer">
+                                <svg class="svgIcon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M23.0677 11.9929L18.818 7.75739L17.4061 9.17398L19.2415 11.0032L0.932469 11.0012L0.932251 13.0012L19.2369 13.0032L17.4155 14.8308L18.8321 16.2426L23.0677 11.9929Z"
+                                        fill="currentColor" />
+                                </svg>
                             </span>
                         </div>
                         <div class="pagination flex items-end justify-end md:pr-8 md:pb-8">
@@ -187,6 +195,65 @@
                                     </svg>
                                 </span> Download catalogue 2024
                             </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section3">
+            <div class="sect3-container">
+                <div class="s3_content">
+                    <div class="s3_left">
+                        <video class="constructor_video" src="./src/utils/constructor.mp4"
+                            poster="./src/assets/images/vidoposter.jpeg"></video>
+                        <div class="constructorVideoControls svgInsideBtn">
+                            <svg class="svgIcon" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="13"
+                                viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 6.5L0.749999 12.9952L0.75 0.00480889L12 6.5Z" stroke="#82969C"
+                                    stroke-width="1" fill="none"></path>
+                            </svg>
+
+                        </div>
+                    </div>
+                    <div class="s3_right">
+                        <div class="s3_text-box">
+                            <h2 class="s3_title">Construktor</h2>
+                            <span class="s3_subtitle">Watch the movie and see how easy it is to adjust wallpaper for
+                                your
+                                individual needs!!</span>
+                            <button
+                                class="button-main mt-6 h-20 w-52 flex items-center justify-evenly border-x border-y border-[var(--color-tip)]">
+                                <span>Collection</span>
+                                <span>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M16.6818 15.7529L18.8116 17.8827C20.1752 16.3052 21 14.249 21 12.0001C21 9.78747 20.2016 7.76133 18.8771 6.19409L16.7444 8.32671C17.5315 9.34177 18 10.6162 18 12.0001C18 13.4203 17.5066 14.7253 16.6818 15.7529Z"
+                                            fill="currentColor" fill-opacity="0.5" />
+                                        <path
+                                            d="M15.6734 16.7445C14.6583 17.5315 13.3839 18 12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C13.4202 6 14.7252 6.49344 15.7528 7.31823L17.8826 5.18843C16.3051 3.82482 14.2489 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C14.2126 21 16.2387 20.2016 17.806 18.8771L15.6734 16.7445Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                        <div
+                            class="s3_info-box flex items-start justify-start flex-col gap-3 bg-zinc-200 bg-opacity-70 cursor-pointer">
+                            <span class="text-sm italic p-6">Wallpaper customized in terms of size or in any other way
+                                are
+                                not refundable.</span>
+                            <div class="h-px w-full bg-zinc-800 bg-opacity-10"></div>
+                            <div class="s3InfoMore w-full p-6 pb-6 flex items-center justify-start gap-2">
+                                <span class="text-sm">More</span>
+                                <div class="s3InfoMore_svg">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M23.0677 11.9929L18.818 7.75739L17.4061 9.17398L19.2415 11.0032L0.932469 11.0012L0.932251 13.0012L19.2369 13.0032L17.4155 14.8308L18.8321 16.2426L23.0677 11.9929Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

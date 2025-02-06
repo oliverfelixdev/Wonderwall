@@ -1,6 +1,4 @@
 @media only screen and (max-width: 768px) {
-  /* NAVBAR RESPONSIVE CODE */
-
   .nav-wrapper {
     padding: 3vw 2vw;
   }
@@ -60,8 +58,6 @@
     width: fit-content;
   }
 
-  /* SECTION RESPONSIVE CODE */
-
   #section1 {
     overflow: hidden;
     height: 100vh;
@@ -74,15 +70,13 @@
     align-items: flex-end;
     justify-content: flex-end;
     flex-direction: column;
-    background-color: rebeccapurple;
     padding: 2vw;
   }
 
   .sect1-container .content .slide-data {
     width: 100%;
-    background-color: red;
   }
-  
+
   .sect1-container .content .slide-data .top-element {
     gap: 1.5rem;
   }
@@ -110,6 +104,5 @@
     grid-template-columns: 1fr 1fr;
     align-items: start;
     place-content: start space-evenly;
-    background-color: chartreuse;
   }
 }

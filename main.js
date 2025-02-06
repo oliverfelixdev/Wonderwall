@@ -7,82 +7,90 @@ let SwiperLnNHeadMn = () => {
         on: {
             slideChange: function () {
                 updateNavigationButtons();
-                updateSlideNumber(this)
-                splitTextIntoSpans()
+                updateSlideNumber(this);
+                splitTextIntoSpans();
+                animateSlide(this);
             },
-
             init: function () {
                 updateSlideNumber(this);
+                animateSlide(this);
             }
         }
     });
-
     function updateNavigationButtons() {
         updateButtonState('.el-prev', swiper.isBeginning);
         updateButtonState('.el-next', swiper.isEnd);
     }
-
     function updateButtonState(selector, condition) {
         let button = document.querySelector(selector);
         button.style.opacity = condition ? '0.5' : '1';
         button.style.pointerEvents = condition ? 'none' : 'auto';
     }
-
     function updateSlideNumber(swiper) {
         const currentSlide = swiper.realIndex + 1;
-        const totalSlide = swiper.slides.length
+        const totalSlide = swiper.slides.length;
 
         document.querySelector('.current-slide').textContent = currentSlide;
-        document.querySelector('.total-slide').textContent = totalSlide
-
+        document.querySelector('.total-slide').textContent = totalSlide;
     }
-
     updateNavigationButtons();
-    let swiperSlide = document.querySelector('.swiper-slide');
-    document.querySelector('.el-prev').addEventListener("click", () => {
-        swiper.slidePrev()
-    })
 
+    document.querySelector('.el-prev').addEventListener("click", () => {
+        swiper.slidePrev();
+    });
     document.querySelector('.el-next').addEventListener("click", () => {
         swiper.slideNext();
     });
-
     // MAIN TITLE ANIMATION ON EACH SLIDE
     function splitTextIntoSpans() {
-        const titleMain = document.querySelectorAll('.title-main')
+        const titleMain = document.querySelectorAll('.title-main');
 
         titleMain.forEach((elem) => {
-            let clutter = ""
-            let titleMainText = elem.textContent
+            let clutter = "";
+            let titleMainText = elem.textContent;
             let splittedText = titleMainText.split("");
             splittedText.forEach((char) => {
-                clutter += `<span>${char}</span>`
-            })
+                clutter += `<span>${char}</span>`;
+            });
 
             elem.innerHTML = clutter;
-
         });
 
-        gsap.fromTo(".title-main span",
+        gsap.fromTo(
+            ".title-main span",
             { y: 75 },
-            { stagger: 0.02, y: 0, duration: .8, ease: "power4.out", })
-
-    };
+            { stagger: 0.02, y: 0, duration: 0.8, ease: "power4.out" }
+        );
+    }
     splitTextIntoSpans();
+    // ZOOM & FADE ANIMATION
+    function animateSlide(swiper) {
+        let slides = document.querySelectorAll('.swiper-slide img');
 
+        slides.forEach((slide, index) => {
+            if (index === swiper.realIndex) {
+                gsap.fromTo(slide,
+                    { scale: 1.1, opacity: .8 },
+                    { scale: 1, opacity: 1, duration: 1, ease: "expo.out", }
+                );
+            }
+        });
+    }
 }; SwiperLnNHeadMn();
 
 let svgStrokeAnimations = () => {
-    const buttons = document.querySelectorAll('.svgInsideBtn')
+    const buttons = document.querySelectorAll('.svgInsideBtn');
     buttons.forEach(button => {
         button.addEventListener("mouseenter", function () {
             const svgPaths = this.querySelectorAll(".svgIcon path");
-            gsap.fromTo(svgPaths,
-                { strokeDasharray: "80", strokeDashoffset: 100 }, /* from */
-                { strokeDasharray: "50, 100, 50, 100", strokeDashoffset: 0, duration: 2, ease: "power4.inOut", } /* to */
+            let tl = gsap.timeline({ repeat: 0 });
+            tl.fromTo(svgPaths,
+                { strokeDasharray: "80", strokeDashoffset: 100 },
+                { strokeDasharray: "50, 100, 50, 100", strokeDashoffset: 0, duration: 2, ease: "slow(0.7,0.7,false)", }
             );
         });
-    })
+
+    });
 }; svgStrokeAnimations();
 
 let hoverImageReveal = () => {
@@ -135,7 +143,7 @@ let hoverImageReveal = () => {
 
             const distance = Math.sqrt(Math.pow(this.vel.x, 2) + Math.pow(this.vel.y, 2));
             const scale = Math.min(distance * this.options.delta, 1);
-            const angle = (this.vel.x * this.options.delta * 180) / Math.PI;
+            const angle = (this.vel.x * this.options.delta * 0) / Math.PI; // !!!!!!!!!!!!!!!!!!!!!!! THIS IS TILT/ROTATE CONFIGURATION HERE
             gsap.to(this.img, {
                 scale: 1 - scale,
                 rotate: angle,
@@ -265,4 +273,22 @@ let hoverImageReveal = () => {
         new HoverImage(item);
     }
 
-}; hoverImageReveal()
+}; hoverImageReveal();
+
+let cnstrctrVidCntrls = document.querySelector(".constructorVideoControls");
+let cnstrctrVideo = document.querySelector(".constructor_video");
+
+cnstrctrVidCntrls.addEventListener("click", () => {
+    cnstrctrVidCntrls.style.display = "none"
+    cnstrctrVideo.play();
+})
+
+cnstrctrVideo.addEventListener("click", () => {
+    cnstrctrVideo.pause();
+    cnstrctrVidCntrls.style.display = "flex"
+    cnstrctrVideo.load();
+})
+
+cnstrctrVideo.addEventListener("contextmenu", e => {
+    e.preventDefault();
+})

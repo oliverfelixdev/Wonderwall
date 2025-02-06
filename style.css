@@ -11,7 +11,7 @@
   --title-xl: 5.5rem;
   --title-lg: 2.6rem;
   --subtitle: 0.9rem;
-  --subtitle-sm: 0.1rem;
+  --subtitle-sm: 0.9rem;
 }
 
 * {
@@ -205,6 +205,7 @@ nav {
   padding-top: 3rem;
   width: 93%;
   max-width: 1000px;
+  /* overflow: auto; */
 }
 
 .prdcts_element {
@@ -214,11 +215,15 @@ nav {
   width: 100%;
   background-color: var(--color-light);
   padding: 2rem 0 1.5rem 0;
-  cursor: grabbing;
   border-bottom: 0.5px solid var(--color-tip);
   margin-top: 2px;
   position: relative;
-  /* transition: all 0.6s cubic-bezier(0.85, 0, 0.15, 1); */
+  transition: all 0.6s cubic-bezier(0.87, 0, 0.13, 1);
+  cursor: grabbing;
+  &:hover {
+    border-bottom: 0.5px solid var(--color-dark);
+    /* padding: 2rem 0 2rem 0; */
+  }
 }
 
 .prdcts_element:hover span {
@@ -229,7 +234,7 @@ nav {
   font-weight: 100;
   font-size: var(--subtitle);
   color: var(--color-tip);
-  transition: all 0.2s ease-out;
+  transition: all 0.6s cubic-bezier(0.87, 0, 0.13, 1);
 }
 
 /* in prdcts-element data attaribute */
@@ -252,4 +257,96 @@ nav {
   font-size: var(--title-lg);
   font-family: "PL";
   line-height: 1;
+}
+
+#section3 {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  padding-top: .1px;
+}
+
+.sect3-container{
+  width: 100%;
+  margin-top: 4rem;
+}
+
+.s3_content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  max-width: 1300px;
+  margin: auto;
+  height: 100%;
+  padding: 0 2rem 0 0;
+}
+
+.s3_left {
+  background-size: cover;
+  height: 100%;
+  min-height: 650px;
+  position: relative;
+  overflow: hidden;
+}
+
+.s3_left video{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.s3_left .constructorVideoControls{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: snow;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.s3_left .constructorVideoControls svg{
+  cursor: pointer;
+  scale: 1.5;
+}
+
+.s3_right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.s3_text-box{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.s3_title {
+  font-size: var(--title-lg);
+  font-family: "PL";
+  margin-bottom: 1rem;
+}
+
+.s3_subtitle {
+  font-size: var(--subtitle-sm);
+}
+
+@media (max-width: 768px) {
+  .s3_content {
+    grid-template-columns: 1fr;
+    padding: 0 2rem;
+  }
 }
