@@ -1,6 +1,74 @@
+let smoothScrolling = () => {
+    const lenis = new Lenis();
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+}; smoothScrolling();
+
+function easeInOutBack(x) {
+    const c1 = 1.70158;
+    const c2 = c1 * 1.525;
+
+    return x < 0.5
+        ? (Math.pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2
+        : (Math.pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;
+}
+
+function cursorEve() {
+    let bodyCrsr = document.querySelector("#cursor");
+    let s4Entry = document.querySelector(".s4_slider");
+
+    document.addEventListener("mousemove", (dets) => {
+        gsap.to(bodyCrsr, {
+            left: dets.x,
+            top: dets.y,
+            duration: 0.2, // Quick response
+            ease: "power2.out",
+        });
+    });
+
+    s4Entry.addEventListener("mouseenter", () => {
+        document.body.style.cursor = "none";
+
+        gsap.to(bodyCrsr, {
+            padding: "2rem", // Expands cursor
+            duration: 0.8,
+            ease: easeInOutBack, // Apply elastic easing
+        });
+
+        const img = document.createElement("img");
+        img.src = "./src/assets/images/cursor-grabbed.svg";
+        img.style.height = "30px";
+        img.style.width = "30px";
+        img.style.position = "absolute";
+        img.style.top = "50%";
+        img.style.left = "50%";
+        img.style.transform = "translate(-50%, -50%)";
+
+        bodyCrsr.appendChild(img);
+    });
+
+    s4Entry.addEventListener("mouseleave", () => {
+        document.body.style.cursor = "default";
+
+        gsap.to(bodyCrsr, {
+            padding: "0rem", // Shrinks cursor back
+            duration: 0.8,
+            ease: easeInOutBack, // Apply elastic easing
+        });
+
+        const img = bodyCrsr.querySelector("img");
+        if (img) {
+            img.remove();
+        }
+    });
+}; cursorEve();
+
 let SwiperLnNHeadMn = () => {
-    // SWIPER MAIN - SLIDE CONFIGURATION
-    let swiper = new Swiper(".mySwiper", {
+    let swiper = new Swiper(".s1-mySwiper", {
         spaceBetween: 30,
         effect: "fade",
         slidesPerView: 1,
@@ -41,7 +109,6 @@ let SwiperLnNHeadMn = () => {
     document.querySelector('.el-next').addEventListener("click", () => {
         swiper.slideNext();
     });
-    // MAIN TITLE ANIMATION ON EACH SLIDE
     function splitTextIntoSpans() {
         const titleMain = document.querySelectorAll('.title-main');
 
@@ -63,9 +130,8 @@ let SwiperLnNHeadMn = () => {
         );
     }
     splitTextIntoSpans();
-    // ZOOM & FADE ANIMATION
     function animateSlide(swiper) {
-        let slides = document.querySelectorAll('.swiper-slide img');
+        let slides = document.querySelectorAll('.s1-mySwiper .swiper-slide img');
 
         slides.forEach((slide, index) => {
             if (index === swiper.realIndex) {
@@ -296,14 +362,13 @@ let showVideoConfig = () => {
 
 }; showVideoConfig();
 
-let s4SldiderSwprConfig = () => {
-    var swiper = new Swiper(".s4-mySwiper", {
+let initSwiperSection4 = () => {
+    let swiperSection4 = new Swiper(".s4-mySwiper", {
         slidesPerView: 3,
         spaceBetween: 30,
         freeMode: true,
-        grab: true
     });
-}; s4SldiderSwprConfig();
+}; initSwiperSection4();
 
 let s4TrailImageEffect = () => {
     {
@@ -412,14 +477,78 @@ let s4TrailImageEffect = () => {
     }
 }; s4TrailImageEffect();
 
+let scrollTriggerConfig = () => {
+    let section4 = document.querySelector("#section4");
+    let trgrElement = document.querySelector(".wonderwall-mention");
+    let trgrElement2 = document.querySelector(".s4_textContent");
 
-// Initialize Lenis
-const lenis = new Lenis();
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: trgrElement2,
+            scroller: "body",
+            start: "top bottom",
+            endTrigger: trgrElement,
+            end: "top top",
+            scrub: 1,
+        }
+    })
+        .to(section4, { backgroundColor: "#82969c", color: "#202020" })
+        .to(section4, { backgroundColor: "#AFA8A1", color: "#f4f4f4" });
+}; scrollTriggerConfig();
 
-// Use requestAnimationFrame to continuously update the scroll
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
+let loader = () => {
+    document.addEventListener("DOMContentLoaded", function () {
+        document.documentElement.classList.add("no-scroll");
+        document.body.classList.add("no-scroll");
 
-requestAnimationFrame(raf);
+        const title = document.getElementById("loader-title");
+        const text = title.textContent.trim();
+        title.innerHTML = text
+            .split("")
+            .map((letter) => `<span class="letter">${letter}</span>`)
+            .join("");
+
+        const letters = document.querySelectorAll(".letter");
+        gsap.set(".loader_bar-inner", { width: "0%" });
+        gsap.set("#loader", { y: "0%" });
+
+        gsap.set(letters, { opacity: 1 });
+
+        gsap.to(letters, {
+            opacity: 0,
+            duration: 2,
+            delay: 1,
+            ease: "power2.out",
+            stagger: {
+                amount: 2,
+                from: "random"
+            }
+        });
+
+        gsap.to(".loader_bar-inner", {
+            width: "100%",
+            duration: 3,
+            delay: 1,
+            ease: "expo.out",
+            onUpdate: function () {
+                let progress = Math.floor(this.progress() * 100);
+                document.getElementById("loader-timer").textContent = progress + "%";
+            },
+            onComplete: function () {
+                document.getElementById("loader-timer").textContent = "100%";
+                gsap.to("#loader", {
+                    y: "-100%",
+                    duration: 1.5,
+                    ease: "expo.out",
+                    delay: 1,
+                    onComplete: () => {
+                        document.getElementById("loader").remove();
+                        // Re-enable scrolling by removing the class
+                        document.documentElement.classList.remove("no-scroll");
+                        document.body.classList.remove("no-scroll");
+                    },
+                });
+            }
+        });
+    });
+}; loader();

@@ -43,6 +43,12 @@ body {
   src: url("../src/assets/fonts/saolsisplayregularItalic.woff2");
 }
 
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
 main {
   position: relative;
   width: 100%;
@@ -187,6 +193,7 @@ nav {
   width: 100vw;
   position: relative;
   background-color: var(--color-light);
+  overflow: hidden;
 }
 
 .sect2-container {
@@ -359,7 +366,7 @@ nav {
   min-height: 100vh;
   width: 100vw;
   position: relative;
-  background-color: var(--color-cadet);
+  background-color: var(--color-light);
   padding-top: 0.1px;
   color: var(--color-light);
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wonderwall Mural — Wallpapers</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="./src/assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/utils.css">
     <link rel="stylesheet" href="./CSS/swiper.css">
@@ -14,6 +15,16 @@
 </head>
 
 <body>
+    <div id="loader">
+        <h1 id="loader-title">WONDERWALL</h1>
+        <div id="loader-bottom-wrap">
+            <div id="loader-timer" class="text-xl font-[SD-RI]">00%</div>
+            <div id="loader-bar">
+                <div class="loader_bar-inner"></div>
+            </div>
+        </div>
+    </div>
+    <div id="cursor"></div>
     <main>
         <header>
             <nav>
@@ -95,22 +106,22 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper mySwiper">
+            <div class="swiper s1-mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="./src/assets/images/hero-image01-scaled.jpg" />
+                        <img src="./src/assets/images/hero-image01-scaled.jpg" class="swiper-landing-img" />
                     </div>
                     <div class="swiper-slide">
-                        <img src="./src/assets/images/hero-image02-scaled.jpg" />
+                        <img src="./src/assets/images/hero-image02-scaled.jpg" class="swiper-landing-img" />
                     </div>
                     <div class="swiper-slide">
-                        <img src="./src/assets/images/hero-image03-scaled.jpg" />
+                        <img src="./src/assets/images/hero-image03-scaled.jpg" class="swiper-landing-img" />
                     </div>
                     <div class="swiper-slide">
-                        <img src="./src/assets/images/hero-image04-scaled.jpg" />
+                        <img src="./src/assets/images/hero-image04-scaled.jpg" class="swiper-landing-img" />
                     </div>
                     <div class="swiper-slide">
-                        <img src="./src/assets/images/hero-image05-scaled.jpg" />
+                        <img src="./src/assets/images/hero-image05-scaled.jpg" class="swiper-landing-img" />
                     </div>
                 </div>
             </div>
@@ -267,7 +278,7 @@
                         <h2>WALLPAPERS</h2>
                     </div>
                 </div>
-                <div class="s4_slider">
+                <div class="s4_slider cursor-none">
                     <div class="swiper s4-mySwiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
@@ -328,17 +339,16 @@
                 <div class="instagram-main">
                     <img src="./src/assets/images/instagram.svg" alt="not found" class="instagramImage invert">
                     <div class="s4-content">
-                        <img class="s4-content__img" src="./src/assets/images/trailimage1.jpg" />
-                        <img class="s4-content__img" src="./src/assets/images/trailimage2.jpg" />
-                        <img class="s4-content__img" src="./src/assets/images/trailimage10.jpg" />
-                        <img class="s4-content__img" src="./src/assets/images/trailimage7.jpg" />
-                        <img class="s4-content__img" src="./src/assets/images/trailimage9.jpg" />
-                        <img class="s4-content__img" src="./src/assets/images/trailimage10.jpg" />
-                        <img class="s4-content__img" src="./src/assets/images/trailimage11.jpg" />
-                        <img class="s4-content__img" src="./src/assets/images/trailimage12.jpg" />
+                        <img class="s4-content__img" src="./src/assets/images/trail1.jpg" />
+                        <img class="s4-content__img" src="./src/assets/images/trail2.jpg" />
+                        <img class="s4-content__img" src="./src/assets/images/trail3.jpg" />
+                        <img class="s4-content__img" src="./src/assets/images/trail7.jpg" />
+                        <img class="s4-content__img" src="./src/assets/images/wallpapers.jpg" />
+                        <img class="s4-content__img" src="./src/assets/images/trail4.jpg" />
+                        <img class="s4-content__img" src="./src/assets/images/trail5.jpg" />
+                        <img class="s4-content__img" src="./src/assets/images/trail6.jpg" />
                     </div>
                 </div>
-
                 <div class="s4-bottom">
                     <div class="shortcut-mention">
                         <span class="text-sm font-[PL] text-[var(--color-contrast)]">Take a shortcut</span>
@@ -366,7 +376,8 @@
         </footer>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
     <script src="./JS/swiper-bundle.min.js"></script>
     <script src="./JS/imagesloaded.pkgd.min.js"></script>
     <script src="./JS/TweenMax.min.js"></script>

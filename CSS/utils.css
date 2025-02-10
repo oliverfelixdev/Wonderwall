@@ -1,3 +1,74 @@
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* cursor */
+#cursor {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  background-color: #cac6c2;
+  border-radius: 50px;
+  transition: all 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* loader */
+
+#loader {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background-color: var(--color-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#loader-title {
+  font-size: 5.5rem;
+  font-family: "SD-RI";
+}
+
+#loader-title span {
+  font-size: 5.5rem;
+  font-family: "SD-RI";
+}
+
+#loader-bottom-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#loader-bar {
+  height: 3px;
+  width: 200px;
+  background-color: var(--color-tip);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+#loader-bar .loader_bar-inner {
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-dark);
+}
+
 /* HEADING SPLITED SPAN'S CLASS */
 .title-main {
   overflow: hidden;
