@@ -1,245 +1,232 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JS Image Trail 2</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            color: #000;
+            background-color: red;
+        }
+
+        .content {
+            height: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content__title {
+            font-family: "OTF® Glusp", Arial, sans-serif;
+            text-transform: uppercase;
+            z-index: 10000;
+            font-size: 4vw;
+        }
+
+        .content__img {
+            max-width: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        @media screen and (min-width: 50em) {
+            body {
+                overflow: hidden;
+            }
+
+            .content {
+                height: 100vh;
+                overflow: hidden;
+            }
+        }
+    </style>
 </head>
-<style>
-    section {
-        min-height: 100vh;
-        background-color: #00000058;
-    }
-
-    .hover-image {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 450px;
-        height: auto;
-        z-index: -1;
-        aspect-ratio: 0.9;
-        transform-origin: center;
-        background: gray;
-        object-fit: cover;
-        pointer-events: none;
-
-    }
-
-    section {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 5rem;
-        overflow: hidden;
-    }
-
-    .list-item {
-        background-color: snow;
-        width: 50rem;
-        height: 5rem;
-        padding: 2vw;
-        border-radius: 10px;
-        margin-top: 2rem;
-        border-bottom: 1px solid #000;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-</style>
 
 <body>
-    <section>
-        <div class="list-item "
-            data-hover-img="https://images.unsplash.com/photo-1680749399868-e7acde2814a4?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODI0OTU4NDU&ixlib=rb-4.0.3&q=40">
-        </div>
-        <div class="list-item"
-            data-hover-img="https://images.unsplash.com/photo-1681038429854-38596ec0d7f7?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODI0OTU4ODM&ixlib=rb-4.0.3&q=40">
-        </div>
-    </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <div class="content">
+        <img src="./src/assets/images/trailimage1.jpg" alt="" class="content__img">
+        <img src="./src/assets/images/trailimage2.jpg" alt="" class="content__img">
+        <img src="./src/assets/images/trailimage3.jpg" alt="" class="content__img">
+        <img src="./src/assets/images/trailimage4.jpg" alt="" class="content__img">
+        <img src="./src/assets/images/trailimage5.jpg" alt="" class="content__img">
 
+        <h3 class="content__title">Artwork</h3>
+    </div>
     <script>
-        class HoverImage {
-            constructor(element, options) {
-                this.el = element;
-                this.imgUrl = element.dataset.hoverImg;
-                this.img = this.createHoverImage();
-                this.imgDimensions = this.getDimensions(this.img);
-                this.init();
+{
+	const body = document.body;
 
-                this.options = Object.assign({}, {
-                    maxVel: 20,
-                    lerp: 0.1,
-                    base: 0.085,
-                    delta: 0.0005,
-                }, options);
+	// helper functions
+	const MathUtils = {
+		lerp: (a, b, n) => (1 - n) * a + n * b,
+		distance: (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1),
+	};
 
-                this.x = 0;
-                this.y = 0;
-                this.lastX = 0;
-                this.lastY = 0;
-                this.vel = { x: 0, y: 0 };
-                this.lerpVel = { x: 0, y: 0 };
-                this.paused = false;
-                this.points = this.getPoints();
-                this.maskPath = this.getMaskPath();
-                this.mask = this.createMask();
-                this.render();
+	// get the mouse position
+	const getMousePos = (ev) => {
+		let posx = 0;
+		let posy = 0;
+		if (!ev) ev = window.event;
+		if (ev.pageX || ev.pageY) {
+			posx = ev.pageX;
+			posy = ev.pageY;
+		} else if (ev.clientX || ev.clientY) {
+			posx = ev.clientX + body.scrollLeft + docEl.scrollLeft;
+			posy = ev.clientY + body.scrollTop + docEl.scrollTop;
+		}
+		return { x: posx, y: posy };
+	};
 
-            }
-            render() {
-                if (this.paused === true) return;
-                requestAnimationFrame(() => this.render());
-                this.vel = {
-                    x: 100 / this.options.maxVel * clamp(this.x - this.lastX, -this.options.maxVel, this.options.maxVel),
-                    y: 100 / this.options.maxVel * clamp(this.y - this.lastY, -this.options.maxVel, this.options.maxVel),
-                };
-                this.lerpVel = {
-                    x: lerp(this.lerpVel.x, this.vel.x, this.options.lerp),
-                    y: lerp(this.lerpVel.y, this.vel.y, this.options.lerp),
-                }
+	let mousePos = (lastMousePos = cacheMousePos = { x: 0, y: 0 });
 
-                this.points = this.getPoints();
+	// update the mouse position
+	window.addEventListener("mousemove", (ev) => (mousePos = getMousePos(ev)));
 
-                this.maskPath = this.getMaskPath();
-                gsap.to(this.mask, {
-                    attr: { d: this.maskPath }
-                });
+	const getMouseDistance = () =>
+		MathUtils.distance(mousePos.x, mousePos.y, lastMousePos.x, lastMousePos.y);
 
-                const distance = Math.sqrt(Math.pow(this.vel.x, 2) + Math.pow(this.vel.y, 2));
-                const scale = Math.min(distance * this.options.delta, 1);
-                const angle = (this.vel.x * this.options.delta * 180) / Math.PI;
-                gsap.to(this.img, {
-                    scale: 1 - scale,
-                    rotate: angle,
-                })
+	class Image {
+		constructor(el) {
+			this.DOM = { el: el };
+			this.defaultStyle = {
+				scale: 1,
+				x: 0,
+				y: 0,
+				opacity: 0,
+			};
+			this.getRect();
+		}
 
-                this.lastX = this.x;
-                this.lastY = this.y;
-            }
-            init() {
-                this.el.parentElement.addEventListener('mousemove', (e) => {
-                    if (this.paused === true) return;
-                    this.x = e.clientX;
-                    this.y = e.clientY;
-                    this.move();
-                });
-                this.el.addEventListener('mouseenter', () => {
-                    if (this.paused === true) return;
-                    this.toggleVisibility(this.img, true)
-                });
-                this.el.addEventListener('mouseleave', () => {
-                    if (this.paused === true) return;
-                    this.toggleVisibility(this.img, false)
-                });
-            }
-            createHoverImage() {
-                let imageElm = new Image(900);
-                imageElm.src = this.imgUrl;
-                imageElm.classList.add('hover-image');
-                // let the browser rasterize the image and hide it after
-                // cause strange behavior where browser dont really load images with opacity set to 0
-                imageElm.addEventListener('load', () => {
-                    imageElm.style.opacity = '0.01';
-                    this.el.appendChild(imageElm);
-                    setTimeout(() => {
-                        this.toggleVisibility(imageElm, false, 0);
-                    }, 100);
-                });
-                return imageElm;
-            }
-            move() {
-                this.imgDimensions = this.getDimensions(this.img)
-                const y = this.y - this.imgDimensions.height / 2;
-                const x = this.x - this.imgDimensions.width / 2;
-                console.log(x, y)
-                gsap.to(this.img, {
-                    y: y,
-                    x: x,
-                });
-            }
-            createMask() {
-                let maskpath = document.querySelector('#hover-image__mask path');
-                this.img.style.cssText +=
-                    '-webkit-clip-path: url(#hover-image__mask);clip-path: url(#hover-image__mask);';
-                if (maskpath) return maskpath;
+		getRect() {
+			this.rect = this.DOM.el.getBoundingClientRect();
+		}
+		isActive() {
+			return TweenMax.isTweening(this.DOM.el) || this.DOM.el.style.opacity != 0;
+		}
+	}
 
-                document.body.insertAdjacentHTML(
-                    'beforeend',
-                    `
-                    <svg height="0" width="0" style="position:absolute;">
-                        <!--   https://yqnn.github.io/svg-path-editor/ -->
-                        <defs>
-                            <clipPath id="hover-image__mask" clipPathUnits="objectBoundingBox">
-                                <path
-                                    d="${this.maskPath}"
-                                    data-path-normal="${this.maskPath}"
-                                />
-                            </clipPath>
-                        </defs>
-                    </svg>
-                    `
-                );
-                return document.querySelector('#hover-image__mask path');
-            }
-            toggleVisibility(el, show, duration = null) {
-                let time = {};
-                if (duration !== null) {
-                    time = {
-                        duration: 0,
-                    };
-                }
-                gsap.to(el, {
-                    opacity: show ? 1 : 0,
-                    ...time,
-                });
-            }
-            getMaskPath() {
-                return `M ${this.options.base} ${this.options.base} C ${this.points.left.top} 0.25 ${this.points.left.bottom} 0.75 ${this.options.base} ${1 - this.options.base} C 0.25 ${this.points.bottom.left} 0.75 ${this.points.bottom.right} ${1 - this.options.base} ${1 - this.options.base} C ${this.points.right.bottom} 0.75 ${this.points.right.top} 0.25 ${1 - this.options.base} ${this.options.base} C 0.75 ${this.points.top.right} 0.25 ${this.points.top.left} ${this.options.base} ${this.options.base} Z`;
-            }
-            getPoints() {
-                return {
-                    left: {
-                        top: this.options.base + (this.options.base / 100 * this.lerpVel.x),
-                        bottom: this.options.base + (this.options.base / 100 * this.lerpVel.x),
-                    },
-                    bottom: {
-                        left: (1 - this.options.base) + (this.options.base / 100 * this.lerpVel.y),
-                        right: (1 - this.options.base) + (this.options.base / 100 * this.lerpVel.y),
-                    },
-                    right: {
-                        bottom: (1 - this.options.base) + (this.options.base / 100 * this.lerpVel.x),
-                        top: (1 - this.options.base) + (this.options.base / 100 * this.lerpVel.x),
-                    },
-                    top: {
-                        right: this.options.base + (this.options.base / 100 * this.lerpVel.y),
-                        left: this.options.base + (this.options.base / 100 * this.lerpVel.y),
-                    },
-                };
-            }
-            getDimensions(el) {
-                return { width: el.clientWidth, height: el.clientHeight };
-            }
-            start() {
-                this.paused = false;
-                this.render();
-            }
-            stop() {
-                this.paused = true;
-            }
-        }
-        function clamp(val, min, max) {
-            return Math.min(Math.max(val, min), max);
-        }
-        function lerp(v0, v1, t) {
-            return v0 * (1 - t) + v1 * t;
-        }
+	class ImageTrail {
+		constructor() {
+			this.DOM = { content: document.querySelector(".content") };
+			this.images = [];
+			[...this.DOM.content.querySelectorAll("img")].forEach((img) =>
+				this.images.push(new Image(img))
+			);
+			this.imagesTotal = this.images.length;
+			this.imgPosition = 0;
+			this.zIndexVal = 1;
+			this.threshold = 100;
+			requestAnimationFrame(() => this.render());
+		}
+		render() {
+			let distance = getMouseDistance();
+			cacheMousePos.x = MathUtils.lerp(
+				cacheMousePos.x || mousePos.x,
+				mousePos.x,
+				0.1
+			);
+			cacheMousePos.y = MathUtils.lerp(
+				cacheMousePos.y || mousePos.y,
+				mousePos.y,
+				0.1
+			);
 
-        for (const item of document.querySelectorAll("[data-hover-img]")) {
-            new HoverImage(item);
-        }
+			if (distance > this.threshold) {
+				this.showNextImage();
 
+				++this.zIndexVal;
+				this.imgPosition =
+					this.imgPosition < this.imagesTotal - 1 ? this.imgPosition + 1 : 0;
+
+				lastMousePos = mousePos;
+			}
+
+			let isIdle = true;
+			for (let img of this.images) {
+				if (img.isActive()) {
+					isIdle = false;
+					break;
+				}
+			}
+			if (isIdle && this.zIndexVal !== 1) {
+				this.zIndexVal = 1;
+			}
+
+			requestAnimationFrame(() => this.render());
+		}
+		showNextImage() {
+			const img = this.images[this.imgPosition];
+			TweenMax.killTweensOf(img.DOM.el);
+
+			new TimelineMax()
+				.set(
+					img.DOM.el,
+					{
+						startAt: { opacity: 0, scale: 1 },
+						opacity: 1,
+						scale: 1,
+						zIndex: this.zIndexVal,
+						x: cacheMousePos.x - img.rect.width / 2,
+						y: cacheMousePos.y - img.rect.height / 2,
+					},
+					0
+				)
+				.to(
+					img.DOM.el,
+					0.9,
+					{
+						ease: Expo.easeOut,
+						x: mousePos.x - img.rect.width / 2,
+						y: mousePos.y - img.rect.height / 2,
+					},
+					0
+				)
+				.to(
+					img.DOM.el,
+					1,
+					{
+						ease: Power1.easeOut,
+						opacity: 0,
+					},
+					0.4
+				)
+				.to(
+					img.DOM.el,
+					1,
+					{
+						ease: Quint.easeOut,
+						scale: 0.2,
+					},
+					0.4
+				);
+		}
+	}
+
+	// preload images
+	const preloadImages = () => {
+		return new Promise((resolve, reject) => {
+			imagesLoaded(document.querySelectorAll(".content__img"), resolve);
+		});
+	};
+
+	preloadImages().then(() => {
+		new ImageTrail();
+	});
+}
     </script>
 </body>
 
