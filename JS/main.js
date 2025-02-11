@@ -552,3 +552,27 @@ let loader = () => {
         });
     });
 }; loader();
+
+let parallaxElems = () => {
+    gsap.utils.toArray(".pxl_con").forEach((container) => {
+        const img = container.querySelectorAll(".pxl_elem");
+        let tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: container,
+                scrub: true,
+                pin: false,
+            },
+        });
+        tl.fromTo(
+            img,
+            {
+                yPercent: -10,
+                ease: "none",
+            },
+            {
+                yPercent: 10,
+                ease: "none",
+            }
+        );
+    });
+}; parallaxElems();
